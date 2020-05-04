@@ -22,9 +22,17 @@ const tutorSchema = new Schema(
     subjects: {
       default: []
     },
+    workExperience: {
+      type: Number,
+      required: true
+    },
     adminAccess: {
       type: Boolean,
       default: false
+    },
+    role: {
+      type: String,
+      default: 'tutor'
     }
   },
   { timestamps: true }

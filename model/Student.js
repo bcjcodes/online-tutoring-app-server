@@ -24,6 +24,10 @@ const studentSchema = new Schema(
     },
     lessons: {
       default: []
+    },
+    role: {
+      type: String,
+      default: 'student'
     }
   },
   { timestamps: true }
