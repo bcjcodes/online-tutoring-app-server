@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const student = require('./routes/student')
 const tutor = require('./routes/tutor')
+const category = require('./routes/category')
 
 // Initializing express json Middleware
 app.use(express.json())
@@ -20,6 +21,7 @@ mongoose
 
 app.use('/api/students/v1', student)
 app.use('/api/tutors/v1', tutor)
+app.use('/api/categories/v1', category)
 
 const port = process.env.PORT
 

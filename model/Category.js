@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const categorySchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true
     },
@@ -14,4 +14,4 @@ const categorySchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = Category = mongoose.model('category', categorySchema)
+module.exports = Category = mongoose.model('categories', categorySchema)
