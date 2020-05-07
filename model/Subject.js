@@ -1,17 +1,24 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Category = require('./Category')
+const Tutor = require('./Tutor')
 
 const subjectSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true
     },
-    subjects: {
-      type: []
-    }
+
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: 'Category'
+    },
+
+    tutors: [{ type: Schema.Types.ObjectId, ref: 'Tutor' }]
   },
   { timestamps: true }
 )
 
-module.exports = Subject = mongoose.model('subjects', subjectSchema)
+const Subject = mongoose.model('Subject', subjectSchema)
+module.exports = Subject

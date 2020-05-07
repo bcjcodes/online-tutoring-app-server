@@ -1,4 +1,5 @@
 const Category = require('../model/Category')
+const Subject = require('../model/Subject')
 
 exports.createCategories = (req, res, next) => {
   const { title } = req.body
@@ -9,7 +10,7 @@ exports.createCategories = (req, res, next) => {
 
   Category.findOne({ title }).then(category => {
     if (category) {
-      return res.status(423).send('Category exists already, create a new one')
+      return res.status(423).send('Category exists, create a new category')
     }
 
     let newCategory = new Category({ title })
@@ -25,25 +26,25 @@ exports.createCategories = (req, res, next) => {
 }
 
 exports.viewEachCategory = (req, res, next) => {
-  let id = req.params.id
-  Category.findOne({ _id: id })
+  let categoryId = req.params.catId
+  Category.findOne({ _id: categoryId })
     .then(category => {
       res.json(category)
     })
     .catch(err => console.log(err))
 }
 
-exports.viewCategories = (req, res, next) => {
+exports.viewCategory = (req, res, next) => {
   Category.find({}).then(category => {
     res.send(category)
   })
 }
 
 exports.updateCategory = (req, res, next) => {
-  let id = req.params.id
-  let { name } = req.body
+  let categoryId = req.params.catId
+  let { title } = req.body
 
-  Category.findByIdAndUpdate(id, { name: name })
+  Category.findByIdAndUpdate(categoryId, { n: title })
     .then(category => {
       if (category) {
         return res.send('Updated Successfully')
@@ -55,7 +56,7 @@ exports.updateCategory = (req, res, next) => {
 }
 
 exports.deleteCategory = (req, res, next) => {
-  let categoryId = req.params.id
+  let categoryId = req.params.catId
 
   Category.findById(categoryId).then(category => {
     if (!category) {

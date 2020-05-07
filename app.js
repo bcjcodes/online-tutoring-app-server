@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const student = require('./routes/student')
 const tutor = require('./routes/tutor')
-const category = require('./routes/category')
+const admin = require('./routes/admin')
+const allUser = require('./routes/allUser')
 
 // Initializing express json Middleware
 app.use(express.json())
@@ -19,9 +20,10 @@ mongoose
   .then(() => console.log('Database Connected'))
   .catch(err => console.log(err))
 
-app.use('/api/students/v1', student)
-app.use('/api/tutors/v1', tutor)
-app.use('/api/categories/v1', category)
+app.use('/api/v1', student)
+app.use('/api/v1', tutor)
+app.use('/api/v1', admin)
+app.use('/api/v1', allUser)
 
 const port = process.env.PORT
 

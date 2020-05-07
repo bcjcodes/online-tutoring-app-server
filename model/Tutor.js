@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Subject = require('./Subject')
 
 const tutorSchema = new Schema(
   {
@@ -19,9 +20,7 @@ const tutorSchema = new Schema(
       type: String,
       required: true
     },
-    subjects: {
-      default: []
-    },
+    subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
     workExperience: {
       type: Number,
       required: true
@@ -33,7 +32,8 @@ const tutorSchema = new Schema(
     role: {
       type: String,
       default: 'tutor'
-    }
+    },
+    lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }]
   },
   { timestamps: true }
 )

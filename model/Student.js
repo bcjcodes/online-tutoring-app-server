@@ -19,11 +19,8 @@ const studentSchema = new Schema(
       type: String,
       required: true
     },
-    subjects: {
-      default: []
-    },
     lessons: {
-      default: []
+      default: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }]
     },
     role: {
       type: String,

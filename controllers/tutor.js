@@ -71,7 +71,7 @@ exports.loginTutor = (req, res, next) => {
             email: tutor.email,
             _id: tutor._id,
             role: tutor.role,
-            adminstatus: tutor.adminstatus
+            adminAccess: tutor.adminAccess
           },
           'secrettoken',
           {
@@ -87,4 +87,68 @@ exports.loginTutor = (req, res, next) => {
       })
     })
     .catch(err => console.log(err))
+}
+
+exports.registerTutorSubjects = (req, res, next) => {
+  const categoryId = req.params.catId
+  const subjectId = req.params.catId
+  const { email } = req.body
+
+  if (!email) {
+    res.status(400).send('Email field required')
+  } else {
+    Category.findById(categoryId).then(category => {
+      if (!category) {
+        return res.status(404).send('Category not found')
+      } else {
+        Subject.findById(subjectId).then(subject => {
+          if (!subject) {
+            return res.status(404).send('Status not found')
+          } else {
+            Tutor.findOne({ email: email }).then(tutor => {
+              tutor.subjects.push(subject)
+              tutor.save().then(tutor => {
+                subject.tutors.push(tutor)
+                subject
+                  .save()
+                  .then(() => {
+                    res.status(201).send('Tutor registered successfully')
+                  })
+                  .catch(err => console.log(err))
+              })
+            })
+          }
+        })
+      }
+    })
+  }
+}
+
+exports.viewTutorSubjects = (req, res, next) => {
+  let tutorId = req.params.tutId
+
+  Tutor.findById(tutorId)
+    .populate('subjects', 'title category')
+    .exec((err, subjects) => {
+      if (err) console.log(err)
+      Subject.find({ tutors: { $in: [tutorId] } }).then(subjects => {
+        res.send(subjects)
+      })
+    })
+}
+
+exports.viewTutor = (req, res, next) => {
+  Tutor.findById(req.params.tutId).then(tutor => {
+    if (!tutor) {
+      res.status(404).send('Tutor not found')
+    } else {
+      res.send(tutor)
+    }
+  })
+}
+
+exports.getAllTutors = (req, res, next) => {
+  Tutor.find({}).then(tutors => {
+    res.send(tutors)
+  })
 }
