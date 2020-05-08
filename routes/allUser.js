@@ -17,7 +17,5 @@ router.get('/category', authenticateAllUser, viewCategory)
 router.get('/subjects', authenticateAllUser, viewAllSubjects)
 router.get('/category/:catId/subjects/', authenticateAllUser, viewSubjects)
 router.get('/category/:catId/subjects/:catId', authenticateAllUser, viewSubject)
-// router.get(search for subjects by title)
-// router.get(search for tutors by first name)
 
 module.exports = router

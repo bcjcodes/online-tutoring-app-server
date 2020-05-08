@@ -18,7 +18,4 @@ router.post(
 )
 router.get('/tutors/:tutId/subjects', authenticateTutor, viewTutorSubjects)
 
-// router.put(update registered subject);
-// router.delete(delete registered subject);
-
 module.exports = router

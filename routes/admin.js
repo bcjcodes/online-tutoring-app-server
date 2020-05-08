@@ -4,7 +4,10 @@ const Category = require('../model/Category')
 const Subject = require('../model/Subject')
 
 const { viewTutor, getAllTutors } = require('../controllers/tutor')
-const { authenticateAdmin } = require('../controllers/authentication')
+const {
+  authenticateAdmin,
+  authenticateStudentAndAdmin
+} = require('../controllers/authentication')
 const {
   createCategories,
   updateCategory,
@@ -16,6 +19,14 @@ const {
   deleteSubject
 } = require('../controllers/subject')
 
+const {
+  viewLesson,
+  viewLessons,
+  bookLesson,
+  updateLesson,
+  deleteLesson
+} = require('../controllers/lesson')
+
 //ADMIN ROUTES
 router.get('/tutors/:tutId', authenticateAdmin, viewTutor)
 router.get('/tutors', authenticateAdmin, getAllTutors)
@@ -24,7 +35,19 @@ router.put('/category/:catId', authenticateAdmin, updateCategory)
 router.delete('/category/:catId', authenticateAdmin, deleteCategory)
 router.post('/category/:catId/subjects', createSubjects)
 
-router.put('/category/:catId/subjects/:subId', updateSubject)
-router.delete('/category/:catId/subjects/:subId', deleteSubject)
+router.put('/category/:catId/subjects/:subId', authenticateAdmin, updateSubject)
+router.delete(
+  '/category/:catId/subjects/:subId',
+  authenticateAdmin,
+  deleteSubject
+)
+
+router.get('/lessons', authenticateAdmin, viewLessons)
+router.get('/lessons/:lessonId', authenticateAdmin, viewLesson)
+router.put('/lessons/:lessonId', authenticateAdmin, updateLesson)
+router.delete('/lessons/:lessionId', authenticateAdmin, deleteLesson)
+
+//student and admin route
+router.post('/lessons', authenticateStudentAndAdmin, bookLesson)
 
 module.exports = router
