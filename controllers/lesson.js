@@ -1,8 +1,7 @@
-const Student = require('../model/student')
-const Tutor = require('../model/tutor')
-const Subject = require('../model/subject')
-const Lesson = require('../model/lesson')
-
+const Student = require('../model/Student')
+const Subject = require('../model/Subject')
+const Category = require('../model/Category')
+const Tutor = require('../model/Tutor')
 exports.bookLesson = (req, res, next) => {
   const { tutor_id, student_id, subject_id } = req.body
 

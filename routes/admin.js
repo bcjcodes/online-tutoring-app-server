@@ -1,5 +1,5 @@
 const router = require('express').Router()
-
+const Student = require('../model/Student')
 const Category = require('../model/Category')
 const Subject = require('../model/Subject')
 
