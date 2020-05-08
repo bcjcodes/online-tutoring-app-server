@@ -2,6 +2,7 @@
 start ng stage 4 task
 this task carry weight sha
 i'm still working on the task, having troubles with deploying it to heroku
+my endpoints are working on postman
 
 Heroku Link
 https://online-tutoring-app-server.herokuapp.com/
