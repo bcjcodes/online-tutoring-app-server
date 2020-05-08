@@ -25,6 +25,10 @@ app.use('/api/v1', tutor)
 app.use('/api/v1', admin)
 app.use('/api/v1', allUser)
 
+app.get('/', (req, res) => {
+  return res.send('Welcome')
+})
+
 const port = process.env.PORT
 
 app.listen(port, () => console.log(`Server is listening at port ${port}`))
