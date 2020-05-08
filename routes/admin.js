@@ -28,8 +28,12 @@ const {
 } = require('../controllers/lesson')
 
 //ADMIN ROUTES
-router.get('/tutors/:tutId', authenticateAdmin, viewTutor)
-router.get('/tutors', authenticateAdmin, getAllTutors)
+router.get(
+  '/5eb5ca8df1923a3d30743ea4/tutors/:tutId',
+  authenticateAdmin,
+  viewTutor
+)
+router.get('/5eb5ca8df1923a3d30743ea4/tutors', authenticateAdmin, getAllTutors)
 router.post('/category', authenticateAdmin, createCategories)
 router.put('/category/:catId', authenticateAdmin, updateCategory)
 router.delete('/category/:catId', authenticateAdmin, deleteCategory)
