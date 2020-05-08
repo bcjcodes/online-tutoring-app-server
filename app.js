@@ -19,9 +19,9 @@ mongoose
   .then(() => console.log('Database Connected'))
   .catch(err => console.log(err))
 
-app.use('/api/students/v1', student)
-app.use('/api/tutors/v1', tutor)
-app.use('/api/categories/v1', category)
+app.use('/api//v1', student)
+app.use('/api//v1', tutor)
+app.use('/api//v1', category)
 
 const port = process.env.PORT
 
