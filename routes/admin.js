@@ -2,8 +2,9 @@ const router = require('express').Router()
 const Student = require('../model/Student')
 const Category = require('../model/Category')
 const Subject = require('../model/Subject')
+const Lesson = require('../model/Lesson')
 
-const { viewTutor, getAllTutors } = require('../controllers/tutor')
+const { viewTutor, getAllTutors, deleteTutor } = require('../controllers/tutor')
 const {
   authenticateAdmin,
   authenticateStudentAndAdmin
@@ -28,16 +29,13 @@ const {
 } = require('../controllers/lesson')
 
 //ADMIN ROUTES
-router.get(
-  '/5eb5ca8df1923a3d30743ea4/tutors/:tutId',
-  authenticateAdmin,
-  viewTutor
-)
-router.get('/5eb5ca8df1923a3d30743ea4/tutors', authenticateAdmin, getAllTutors)
+router.get('/tutors/:tutId', authenticateAdmin, viewTutor)
+router.get('/tutors', authenticateAdmin, getAllTutors)
+router.delete('/tutors/:tutId', authenticateAdmin, deleteTutor)
 router.post('/category', authenticateAdmin, createCategories)
 router.put('/category/:catId', authenticateAdmin, updateCategory)
 router.delete('/category/:catId', authenticateAdmin, deleteCategory)
-router.post('/category/:catId/subjects', createSubjects)
+router.post('/category/:catId/subjects', authenticateAdmin, createSubjects)
 
 router.put('/category/:catId/subjects/:subId', authenticateAdmin, updateSubject)
 router.delete(

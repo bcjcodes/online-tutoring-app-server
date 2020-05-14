@@ -2,7 +2,7 @@ const Category = require('../model/Category')
 const Subject = require('../model/Subject')
 
 exports.createSubjects = (req, res, next) => {
-  let categoryId = req.params
+  let categoryId = req.params.catId
   let { title } = req.body
   console.log(title)
   if (!title) {

@@ -76,7 +76,6 @@ exports.loginStudent = (req, res, next) => {
             expiresIn: '7200s'
           }
         )
-
         res.status(200).json({
           message: `Welcome back, keep on learning!!`,
           _id: student._id,

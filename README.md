@@ -201,25 +201,171 @@ updatedAt
 }
 
 //admin route
-router.get('/tutors/:tutId', authenticateAdmin, viewTutor)
-router.get('/tutors', authenticateAdmin, getAllTutors)
 
-//Category Endpoint
-router.post('/category', authenticateAdmin, createCategories)
-router.put('/category/:catId', authenticateAdmin, updateCategory)
-router.delete('/category/:catId', authenticateAdmin, deleteCategory)
-router.post('/category/:catId/subjects', createSubjects)
+//Get a particular tutor
+URL: /tutors/:tutId
 
-router.put('/category/:catId/subjects/:subId', authenticateAdmin, updateSubject)
-router.delete(
-'/category/:catId/subjects/:subId',
-authenticateAdmin,
-deleteSubject
-)
+method: GET
 
-//Lesson Endpoint
-router.get('/lessons', authenticateAdmin, viewLessons)
-router.get('/lessons/:lessonId', authenticateAdmin, viewLesson)
-router.put('/lessons/:lessonId', authenticateAdmin, updateLesson)
-router.delete('/lessons/:lessionId', authenticateAdmin, deleteLesson)
-router.post('/lessons', authenticateStudentAndAdmin, bookLesson)
+//Requires the admin token, add it to the authorization header
+
+Response
+Status code 200
+Success
+Content
+
+{tutor}
+
+//Get tutors
+URL: /tutors
+
+method: GET
+
+//Requires the admin token, add it to the authorization header
+
+Response
+Status code 200
+Success
+Content
+[
+{tutor},
+{tutor}
+]
+
+//Deactivate tutor
+URL: /tutors/:tutId
+
+method: DELETE
+
+//Requires the admin token, add it to the authorization header
+
+Response
+Status code 200
+Success
+Content
+
+{message: 'message'}
+
+//Get Categories
+URL: /category
+method: GET
+
+//Requires the admin token, add it to the authorization header
+
+Required fields: field required
+{
+title: ""
+}
+
+Response
+Status code 200
+Success
+Content
+
+[
+{
+"subjects": [
+id: ""
+],
+"\_id": "",
+"title": "",
+},
+{
+"subjects": [],
+"\_id": "",
+"title": ""
+},
+{
+"subjects": [],
+"\_id": "",
+"title": ""
+},
+{
+"subjects": [],
+"\_id": "",
+"title": ""
+}
+]
+
+//Update Categories
+URL: /category/:catId
+method: PUT
+
+//Requires the admin token, add it to the authorization header
+
+Required fields: field required
+{
+title: ""
+}
+
+Response
+Status code 200
+Success
+Content
+
+{
+status: 'success',
+message: 'updated successfully'
+}
+
+//Delete Category
+URL: /category/:catId
+method: DELETE
+
+//Requires the admin token, add it to the authorization header
+
+Response
+Status code 200
+Success
+Content
+
+{
+status: 'success',
+message: 'category deleted'
+}
+
+//Add Subjects to category
+URL: /category/:catId/subjects
+
+method: POST
+
+//Requires the admin token, add it to the authorization header
+
+Required fields: field required
+{
+title: "",
+catId:""
+}
+
+//UPDATE SUBJECT IN A CATEGORY
+URL: /category/:catId/subjects
+
+method: PUT
+
+//Requires the admin token, add it to the authorization header
+
+Required fields: field required
+{
+title: ""
+}
+
+//DELETE SUBJECT IN A CATEGORY
+URL: /category/:catId/subjects/:subId
+
+method: DELETE
+
+//Requires the admin token, add it to the authorization header
+
+//LESSON ENDPOINT
+
+URL: /lessons
+
+method: POST
+////Requires the admin or student token, add it to the authorization header
+
+Required fields: field required
+{
+tutor_id:"",
+student_id:"",
+subject_id
+}

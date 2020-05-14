@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Tutor = require('./tutor')
-const Subject = require('./subject')
-const Student = require('./student')
+const Tutor = require('./Tutor')
+const Subject = require('./Subject')
+const Student = require('./Student')
 
 const lessonSchema = new Schema(
   {
@@ -22,5 +22,5 @@ const lessonSchema = new Schema(
   },
   { timestamps: true }
 )
-
-module.exports = Lesson = mongoose.model('lesson', lessonSchema)
+const Lesson = mongoose.model('Lesson', lessonSchema)
+module.exports = Lesson

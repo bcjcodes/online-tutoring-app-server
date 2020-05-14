@@ -137,6 +137,20 @@ exports.viewTutorSubjects = (req, res, next) => {
     })
 }
 
+exports.deleteTutor = (req, res, next) => {
+  let tutorId = req.params.tutId
+  Tutor.findById(req.params.tutId)
+    .then(tutor => {
+      if (!tutor) {
+        res.status(404).send('Tutor not found')
+      } else {
+        tutor.remove().then(() => res.send('Tutor Deactivated'))
+      }
+    })
+
+    .catch(err => console.log(err))
+}
+
 exports.viewTutor = (req, res, next) => {
   Tutor.findById(req.params.tutId).then(tutor => {
     if (!tutor) {

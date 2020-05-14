@@ -21,6 +21,7 @@ const tutorSchema = new Schema(
       required: true
     },
     subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
+
     workExperience: {
       type: Number,
       required: true
@@ -38,4 +39,5 @@ const tutorSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = Tutor = mongoose.model('tutors', tutorSchema)
+const Tutor = mongoose.model('tutors', tutorSchema)
+module.exports = Tutor

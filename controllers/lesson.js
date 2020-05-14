@@ -1,15 +1,16 @@
 const Student = require('../model/Student')
 const Subject = require('../model/Subject')
-const Category = require('../model/Category')
+const Lesson = require('../model/Lesson')
 const Tutor = require('../model/Tutor')
+
 exports.bookLesson = (req, res, next) => {
   const { tutor_id, student_id, subject_id } = req.body
 
   if (!tutor_id || !student_id || !subject_id) {
     return res.status(400).send('Enter required field')
   } else {
-    Tutor.find({ subjects: { $in: [subject_id] } }).then(tutors => {
-      if (!tutors) {
+    Tutor.find({ subjects: { $in: [subject_id] } }).then(tutor => {
+      if (!tutor) {
         return res.status(403).send('Tutor not assigned to subject')
       } else {
         Tutor.findById(tutor_id).then(tutor => {
@@ -18,7 +19,7 @@ exports.bookLesson = (req, res, next) => {
           } else {
             Student.findById(student_id).then(student => {
               if (!student) {
-                return res.status(404).send('Tutor not found')
+                return res.status(404).send('Student not found')
               } else {
                 Subject.findById(subject_id).then(subject => {
                   if (!subject) {
