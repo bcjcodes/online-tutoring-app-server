@@ -5,7 +5,7 @@ require('dotenv').config()
 const student = require('./routes/student')
 const tutor = require('./routes/tutor')
 const admin = require('./routes/admin')
-const allUser = require('./routes/allUser')
+const allUser = require('./r outes/allUser')
 
 // Initializing express json Middleware
 app.use(express.json())
@@ -26,7 +26,7 @@ app.use('/api/v1', admin)
 app.use('/api/v1', allUser)
 
 app.get('/', (req, res) => {
-  return res.send('Welcome')
+  return res.send('Welcome to BCJ TUTORING APP')
 })
 
 const port = process.env.PORT

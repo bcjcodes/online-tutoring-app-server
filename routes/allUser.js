@@ -10,12 +10,11 @@ const {
   viewSubjects
 } = require('../controllers/subject')
 
-const { authenticateAllUser } = require('../controllers/authentication')
 
-router.get('/category/:catId', authenticateAllUser, viewEachCategory)
-router.get('/category', authenticateAllUser, viewCategory)
-router.get('/subjects', authenticateAllUser, viewAllSubjects)
-router.get('/category/:catId/subjects/', authenticateAllUser, viewSubjects)
-router.get('/category/:catId/subjects/:catId', authenticateAllUser, viewSubject)
+router.get('/category/:catId', viewEachCategory)
+router.get('/category', viewCategory)
+router.get('/subjects', viewAllSubjects)
+router.get('/category/:catId/subjects/',  viewSubjects)
+router.get('/category/:catId/subjects/:catId', viewSubject)
 
 module.exports = router

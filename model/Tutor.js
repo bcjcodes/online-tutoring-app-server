@@ -39,5 +39,5 @@ const tutorSchema = new Schema(
   { timestamps: true }
 )
 
-const Tutor = mongoose.model('tutors', tutorSchema)
+const Tutor = mongoose.model('Tutor', tutorSchema)
 module.exports = Tutor
