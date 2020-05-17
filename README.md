@@ -83,8 +83,6 @@ URL: /category
 
 method: GET
 
-//Any user can access this, get the user token add it to the authorization header
-
 Response
 Status code 200
 Success
@@ -105,7 +103,6 @@ URL: /category:/catId
 
 method: GET
 
-//Any user can access this, get the user token add it to the authorization header
 
 Response
 Status code 200
@@ -127,7 +124,6 @@ URL: /category:/catId/subjects
 
 method: GET
 
-//Any user can access this, get the user token add it to the authorization header
 
 Response
 Status code 200
@@ -153,7 +149,6 @@ URL: /category:/catId/subjects:/subId
 
 method: GET
 
-//Any user can access this, get the user token add it to the authorization header
 
 Response
 Status code 200
@@ -178,8 +173,6 @@ updatedAt
 URL: /subjects
 
 method: GET
-
-//Any user can access this, get the user token add it to the authorization header
 
 Response
 Status code 200
